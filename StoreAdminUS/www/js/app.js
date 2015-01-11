@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers'])
+angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers','proveedor.controllers'])
     .constant('apiService', {
         baseUri: 'http://192.168.1.31/inventariocc/api/'
     })
@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers'])
                         controller: 'createCtrl'
                     }
                 }
-            });
+            })
 
         //            .state('producto.sub', {
         //                url: '',
@@ -57,6 +57,36 @@ angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers'])
         //                    }
         //                }
         //            });
+
+        //router proveedor Mavc
+        
+        .state('proveedor', {
+            url: '/proveedor',
+            abstract: true,
+            templateUrl: 'views/proveedor/index.html',
+            controller: 'mainProveCtrl'
+        })
+        .state('proveedor.list', {
+            url: '',
+            views: {
+                '_viewProve': {
+                    templateUrl: 'views/proveedor/list.html',
+                    controller: 'listProveCtrl'
+                }
+            }
+        })
+        .state('proveedor.create', {
+            url: '',
+            views: {
+                '_viewProve': {
+                    templateUrl: 'views/proveedor/create.html',
+                    controller: 'createProveCtrl'
+                }
+            }
+        });
+        
+        //
+        
         $urlRouterProvider.otherwise('/');
     })
     .run(function ($ionicPlatform) {
@@ -72,9 +102,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers'])
         });
     })
     .controller('homeController', function ($scope) {
-        var m = [{
-            name: 'Producto',
-            topic: 'producto'
-        }];
+        var m = [
+            {name: 'Producto',topic: 'producto'},
+            {name: 'Proveedor',topic: 'proveedor'}
+        ];
         $scope.items = m;
     });

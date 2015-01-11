@@ -1,1 +1,11 @@
 /* Empty. Add your own CSS if you like */
+
+.css-form input.ng-invalid.ng-touched {    
+	border-style: solid;
+	border-color: #ff0000;  
+}
+
+.css-form input.ng-valid.ng-touched {
+   border-style: solid;
+   border-color: #00FF00;
+}

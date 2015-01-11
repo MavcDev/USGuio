@@ -74,7 +74,7 @@ angular.module('producto.controllers', [])
             estado: 1
         };
 
-        $scope.save = function () {
+        $scope.save = function () {            
             $http.post(apiService.baseUri + 'producto/', $scope.model)
                 .success(function (data) {
                     $location.path('/');
