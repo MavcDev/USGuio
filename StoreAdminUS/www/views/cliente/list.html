@@ -1,0 +1,17 @@
+<ion-list ng-show="c.b">
+    <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+            <input type="text" placeholder="«Buscar»" ng-model="find">
+        </label>
+        <button class="button button-icon icon ion-ios-barcode-outline">
+        </button>
+    </div>
+</ion-list>
+<ion-list>    
+    <ion-item ng-repeat="item in list | filter:find | orderBy:'nombre'" ng-show="list.length" >
+        {{item.nombre}}
+        <div>
+            <small>{{item.cedula}}</small>
+        </div>
+    </ion-item>
+</ion-list>

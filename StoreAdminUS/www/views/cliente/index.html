@@ -1,0 +1,28 @@
+<ion-side-menus>
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">Acciones</h1>
+        </ion-header-bar>
+        <ion-content padding="false" scroll="false" class="has-header">
+            <ion-list>
+               <a class="item item-icon-left" ui-sref="cliente.list">
+                    <i class="icon ion-ios-plus-outline"></i>
+                    Lista
+                </a>
+                <a class="item item-icon-left" ui-sref="cliente.create">
+                    <i class="icon ion-ios-plus-outline"></i>
+                    Nuevo cliente
+                </a>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+    <ion-pane ion-side-menu-content>
+        <div class="bar bar-header bar-positive">
+        <a class="button button-icon icon ion-navicon" ng-click="sideMenu.toggleLeft()"></a>
+            <h1 class="h1 title">Cliente</h1>            
+        </div>
+        <ion-content class="has-header">
+            <div ui-view='_viewCli'></div>
+        </ion-content>
+    </ion-pane>
+</ion-side-menus>

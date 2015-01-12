@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers','proveedor.controllers'])
+angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers','proveedor.controllers','cliente.controllers'])
     .constant('apiService', {
         baseUri: 'http://192.168.1.31/inventariocc/api/'
     })
@@ -83,6 +83,34 @@ angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers','proveed
                     controller: 'createProveCtrl'
                 }
             }
+        })
+        
+        //
+        
+        //router cliente Mavc
+        .state('cliente', {
+            url: '/cliente',
+            abstract: true,
+            templateUrl: 'views/cliente/index.html',
+            controller: 'mainCliCtrl'
+        })
+        .state('cliente.list', {
+            url: '',
+            views: {
+                '_viewCli': {
+                    templateUrl: 'views/cliente/list.html',
+                    controller: 'listCliCtrl'
+                }
+            }
+        })
+        .state('cliente.create', {
+            url: '',
+            views: {
+                '_viewCli': {
+                    templateUrl: 'views/cliente/create.html',
+                    controller: 'createCliCtrl'
+                }
+            }
         });
         
         //
@@ -104,7 +132,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'producto.controllers','proveed
     .controller('homeController', function ($scope) {
         var m = [
             {name: 'Producto',topic: 'producto'},
-            {name: 'Proveedor',topic: 'proveedor'}
+            {name: 'Proveedor',topic: 'proveedor'},
+            {name: 'Cliente',topic: 'cliente'}
         ];
         $scope.items = m;
     });
