@@ -29,13 +29,17 @@ angular.module('producto.controllers', [])
             $scope._view = s;
         };
     })
-    .controller('listCtrl', function ($scope, $http, apiService) {
+    .controller('listCtrl', function ($scope, $http, $ionicSideMenuDelegate, apiService) {
+        $scope.sideMenu = $ionicSideMenuDelegate;
+        $scope.c = {
+            find: '',
+            b: false
+        };
         $scope.list = [];
         $scope.c = {
             find: '',
             b: false
         };
-        //$scope.sideMenu = $ionicSideMenuDelegate;
 
         $http
             .get(apiService.baseUri + 'producto/')
@@ -74,10 +78,10 @@ angular.module('producto.controllers', [])
             estado: 1
         };
 
-        $scope.save = function () {            
+        $scope.save = function () {
             $http.post(apiService.baseUri + 'producto/', $scope.model)
                 .success(function (data) {
-                    $location.path('/');
+                    $location.path('/producto');
                 })
                 .error(function (data) {
                     alert(data.Message);
@@ -89,7 +93,7 @@ angular.module('producto.controllers', [])
                 .scan()
                 .then(function (result) {
                     // Success! Barcode data is here
-                    $scope.model.codigo = parseInt(result.text);
+                    $scope.model.codigo = result.text;
                 }, function (error) {
                     // An error occurred
                 });

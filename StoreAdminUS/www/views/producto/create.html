@@ -1,45 +1,50 @@
-<form ng-submit="save()">
-    <ion-list>
-<!--
-        <div class="item item-body">
-            <img src="delorean.jpg">
-        </div>
--->
-        <label class="item item-input item-stacked-label">
-            <span class="input-label">Nombre</span>
-            <input type="text">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Código</span>
-            <input type="text">
-        </label>
-        <label class="item item-input item-stacked-label">
-            <span class="input-label">Descripción</span>
-            <textarea style="height:60px;"></textarea>
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Stop mínimo</span>
-            <input type="number">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Stop máximo</span>
-            <input type="number">
-        </label>
-        <label class="item item-input item-select">
-            <span class="input-label">Categoría</span>
-            <select>
-                <option>Azul</option>
-            </select>
-        </label>
-        <li class="item item-toggle">
-            Activo
-            <label class="toggle toggle-assertive">
-                <input type="checkbox" checked>
-                <div class="track">
-                    <div class="handle"></div>
+<ion-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Producto</h1>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="save()">
+            <ion-list>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Nombre</span>
+                    <input type="text" ng-model="model.concepto">
+                </label>
+                <div class="item item-input item-icon-right">
+                    <span class="input-label">Código</span>
+                    <label>
+                        <input type="text" ng-model="model.codigo" ng-pattern="/^[0-9]+$/" style="text-align:center;padding-right:0;">
+                    </label>
+                    <i class="icon ion-ios7-telephone-outline" ng-click="scan()"></i>
                 </div>
-            </label>
-        </li>
-        <button class="button button-block button-positive" type="submit">Guardar</button>
-    </ion-list>
-</form>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Descripción</span>
+                    <textarea style="height:60px;" ng-model="model.descripcion"></textarea>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Stop mínimo</span>
+                    <input type="number" ng-model="model.stopmin">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Stop máximo</span>
+                    <input type="number" ng-model="model.stopmax">
+                </label>
+                <label class="item item-input item-select">
+                    <span class="input-label">Categoría</span>
+                    <select ng-model="model.categoriaId">
+                        <option value="1">Azul</option>
+                    </select>
+                </label>
+                <li class="item item-toggle">
+                    Activo
+                    <label class="toggle toggle-assertive">
+                        <input type="checkbox" ng-model="model.estado" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+                <button class="button button-block button-positive" type="submit">Guardar</button>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view>
