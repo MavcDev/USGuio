@@ -2,16 +2,8 @@
 
 angular.module('cliente.controllers', [])
 
-	
-	.config(function ($stateProvider) {
-
-
-	})
-	.controller('mainCliCtrl', function ($scope, $ionicSideMenuDelegate,$location) {
-        $scope.sideMenu = $ionicSideMenuDelegate;        
-        
-    })
-    .controller('listCliCtrl', function ($scope, $http, apiService) {
+    .controller('listCliCtrl', function ($scope, $http, $ionicSideMenuDelegate,apiService) {
+    	$scope.sideMenu = $ionicSideMenuDelegate;
         $scope.list = [];
 
         $scope.c = {
@@ -43,4 +35,8 @@ angular.module('cliente.controllers', [])
             console.log($scope.model);            
         };
 
+    })
+    .controller('updateCliCtrl', function ($scope, $http, apiService) {
+
+        
     });

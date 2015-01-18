@@ -9,13 +9,20 @@ angular.module('proveedor.routes', [])
             .state('proveedor.list', {
                 url: '',
                 templateUrl: 'views/proveedor/list.html',
-                controller: 'listCtrl',
+                controller: 'listProveCtrl',
                 cache: false
             })
             .state('proveedor.create', {
                 url: '/create',
                 templateUrl: 'views/proveedor/create.html',
-                controller: 'createCtrl',
+                controller: 'createProveCtrl',
                 cache: false
-            });
+            })
+            .state('proveedor.update', {
+                url: '/update/:id',
+                templateUrl: 'views/proveedor/create.html',
+                controller: 'updateProveCtrl',
+                cache: false
+            })
+        
     });

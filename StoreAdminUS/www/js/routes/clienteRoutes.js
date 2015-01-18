@@ -9,13 +9,20 @@ angular.module('cliente.routes', [])
             .state('cliente.list', {
                 url: '',
                 templateUrl: 'views/cliente/list.html',
-                controller: 'listCtrl',
+                controller: 'listCliCtrl',
                 cache: false
             })
             .state('cliente.create', {
                 url: '/create',
                 templateUrl: 'views/cliente/create.html',
-                controller: 'createCtrl',
+                controller: 'createCliCtrl',
+                cache: false
+            })
+            .state('cliente.update', {
+                url: '/update/:id',
+                templateUrl: 'views/cliente/create.html',
+                controller: 'updateCliCtrl',
                 cache: false
             });
+            
     });
