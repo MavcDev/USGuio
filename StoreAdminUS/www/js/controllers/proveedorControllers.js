@@ -4,12 +4,7 @@ angular.module('proveedor.controllers', [])
 	
     .controller('listProveCtrl', function ($scope, $http,$ionicSideMenuDelegate, $cordovaSQLite, apiService) {
     	$scope.sideMenu = $ionicSideMenuDelegate;
-        
-    	$scope.c = {
-    		find: '',
-    		b: false
-    	};
-          
+    
     	$scope.listar = function() {
 	        $scope.list= [];        	 
 	       	var query = "SELECT codigo_proveedor, nombre_proveedor, telefono, direccion FROM proveedor";
@@ -21,11 +16,7 @@ angular.module('proveedor.controllers', [])
 	       		} 
 	       	}, function (err) {
 	       		console.error(err);
-	       	});
-	           	       	
-	       	if($scope.list.length>0){
-	       		$scope.c.b=true;
-	       	}
+	       	});	       		           	      
     	};                          
     	$scope.listar();
         
