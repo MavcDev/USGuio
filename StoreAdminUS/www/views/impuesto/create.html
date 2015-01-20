@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Impuesto</h1>
+    </ion-header-bar>
+    <ion-content>       
+	<form ng-submit="save()" class="css-form">
+    	<ion-list>    	           
+			<input type="hidden" ng-model="model.codigo" required><!-- por si algo -->        
+        	<label class="item item-input item-stacked-label">
+            	<span class="input-label">concepto</span>
+            	<input type="text" ng-model="model.concepto" required>
+        	</label>
+        	<label class="item item-input">
+            	<span class="input-label">gravamen</span>
+            	<input type="number" ng-model="model.gravamen" required>
+        	</label>             
+        	<button class="button button-block button-positive" type="submit">{{btnName}}</button>
+    	</ion-list>
+	</form>
+	</ion-content>
+</ion-view>

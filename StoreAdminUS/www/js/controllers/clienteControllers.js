@@ -22,7 +22,7 @@ angular.module('cliente.controllers', [])
         $scope.listar();        
     })
     .controller('createCliCtrl', function ($scope, $http, $location,$cordovaSQLite, apiService) {
-            	    	
+    	$scope.btnName = 'Guardar';  	    	
     	$scope.model = {
     		codigo: null,
             cedula: null,
@@ -41,6 +41,7 @@ angular.module('cliente.controllers', [])
 
     })
     .controller('updateCliCtrl', function ($scope, $http, $cordovaSQLite,apiService) {
+    	$scope.btnName = 'Modificar';
     	$scope.model = {
         	codigo: null,
             cedula: null,
@@ -48,5 +49,10 @@ angular.module('cliente.controllers', [])
             telefono: '',
             direccion: ''                    
     	};
-        
+    	
+    	$scope.save = function(){
+        	      
+        };        
     });
+
+

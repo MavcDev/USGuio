@@ -11,7 +11,12 @@ angular.module('starter', [
     'proveedor.controllers',
     'proveedor.routes',
     'cliente.controllers',
-    'cliente.routes'])
+    'cliente.routes',
+    'categoria.controllers',
+    'categoria.routes',
+    'impuesto.controllers',
+    'impuesto.routes'
+    ])
     .constant('apiService', {
         baseUri: 'http://192.168.1.10/inventariocc/api/'
     })
@@ -57,7 +62,15 @@ angular.module('starter', [
             {
                 name: 'Cliente',
                 topic: 'cliente'
-            }
+            },
+            {
+            	name: 'Impuesto',
+                topic: 'impuesto'
+            },
+            {
+            	name: 'Categoria',
+                topic: 'categoria'
+            }            
         ];
         $scope.items = m;
     });
