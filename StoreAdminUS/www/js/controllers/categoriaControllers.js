@@ -17,14 +17,14 @@ angular.module('categoria.controllers', [])
                	 	}                	                      
                 } 
             }, function (err) {
-                console.error(err);
+            	//$cordovaToast.show(err, 'long', 'center');
             });       	
 		};
                       
         $scope.listar();
         
     })
-    .controller('createCateCtrl', function ($scope, $http, $location,$cordovaSQLite, apiService) {
+    .controller('createCateCtrl', function ($scope, $http, $location,$cordovaSQLite,$cordovaToast, apiService) {
             	    	
     	$scope.btnName = 'Guardar';  
     	$scope.model = {
@@ -34,23 +34,47 @@ angular.module('categoria.controllers', [])
     	    	
         $scope.save = function(){
         	var query = "INSERT INTO categoria (nombre_categoria) VALUES (?)";
-            $cordovaSQLite.execute(db, query, [$scope.model.nombre]).then(function(res) {
+            $cordovaSQLite.execute(db, query, [$scope.model.nombre]).then(
+            function(res) {
+            	$cordovaToast.show('Se ha guardado con exito', 'long', 'center');
+            	$location.path('/categoria');
             }, function (err) {
-                console.error(err);
-            });
-            console.log($scope.model);            
+            	 $cordovaToast.show(err, 'long', 'center');            	    
+            });            
         };
 
     })
-    .controller('updateCateCtrl', function ($scope, $http, $cordovaSQLite,apiService) {
-    	
+    .controller('updateCateCtrl', function ($scope, $http, $stateParams,$cordovaSQLite,$cordovaToast,apiService) {
+    	    	
     	$scope.btnName = 'Modificar';
     	$scope.model = {
     		codigo: null,
     		nombre: null                               
     	};
     	
+    	$scope.buscar = function(){
+    		var query = "SELECT codigo_categoria,nombre_categoria FROM categoria where codigo_categoria=?";
+            $cordovaSQLite.execute(db, query, [$stateParams.id]).then(function(res) {
+                if(res.rows.length > 0) {
+                	$scope.model.codigo= res.rows.item(0).codigo_categoria;
+                	$scope.model.nombre = res.rows.item(0).nombre_categoria;               	 		               	 	                	                     
+                } 
+            }, function (err) {
+            	$cordovaToast.show(err, 'long', 'center');
+            });
+    	};
+    	    	    	
     	$scope.save = function(){
-        	      
+    		var query = "UPDATE categoria set nombre_categoria=? where codigo_categoria=?";
+            $cordovaSQLite.execute(db, query, [$scope.model.nombre,$scope.model.codigo]).then(
+            function(res) {
+            	$cordovaToast.show('Se ha modificado con exito', 'long', 'center');
+            	$location.path('/categoria');
+            }, function (err) {
+            	 $cordovaToast.show(err, 'long', 'center');            	    
+            });              
         };        
+        
+        $scope.buscar();
+        
     });

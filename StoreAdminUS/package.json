@@ -1,7 +1,7 @@
 {
-  "name": "tienda",
+  "name": "storeadminus",
   "version": "1.0.0",
-  "description": "tienda: An Ionic project",
+  "description": "StoreAdminUS: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",

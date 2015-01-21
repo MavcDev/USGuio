@@ -15,13 +15,13 @@ angular.module('proveedor.controllers', [])
 	       			}                	                      
 	       		} 
 	       	}, function (err) {
-	       		console.error(err);
+	       		//$cordovaToast.show(err, 'long', 'center');
 	       	});	       		           	      
     	};                          
     	$scope.listar();
         
     })
-    .controller('createProveCtrl', function ($scope, $http, $location, $cordovaSQLite, apiService) {
+    .controller('createProveCtrl', function ($scope, $http, $location, $cordovaSQLite,$cordovaToast, apiService) {
             	  
     	$scope.btnName = 'Guardar';    	
     	$scope.model = {
@@ -33,31 +33,47 @@ angular.module('proveedor.controllers', [])
     	
     	$scope.save = function(){
             var query = "INSERT INTO proveedor (codigo_proveedor, nombre_proveedor, telefono, direccion) VALUES (?,?,?,?)";
-            $cordovaSQLite.execute(db, query, [$scope.model.codigo, $scope.model.nombre,$scope.model.telefono,$scope.model.direccion]).then(function(res) {            	
+            $cordovaSQLite.execute(db, query, [$scope.model.codigo, $scope.model.nombre,$scope.model.telefono,$scope.model.direccion]).then(
+            function(res) {
+            	$cordovaToast.show('Se ha guardado con exito', 'long', 'center');
+            	$location.path('/proveedor');
             }, function (err) {
-            	console.error(err);
+            	$cordovaToast.show(err, 'long', 'center');
             });                           
     	};
 
     })
-    .controller('updateProveCtrl', function ($scope, $http, $location, $cordovaSQLite, apiService) {
-        
-    	$scope.btnName = 'Modificar';
-    	
+    .controller('updateProveCtrl', function ($scope, $http, $location,$stateParams,$cordovaToast, $cordovaSQLite, apiService) {        
+    	$scope.btnName = 'Modificar';    	
     	$scope.model = {
     		codigo: null,
             nombre: null,            
             telefono: '',
             direccion: ''                    
-    	};
-    	
+    	};    	
+    	$scope.buscar = function(){
+    		var query = "SELECT codigo_proveedor, nombre_proveedor, telefono, direccion FROM proveedor where codigo_proveedor=?";
+	       	$cordovaSQLite.execute(db, query, [$stateParams.id]).then(function(res) {
+	       		if(res.rows.length > 0) {
+	       			 $scope.model.codigo = res.rows.item(0).codigo_proveedor;
+	       			 $scope.model.nombre = res.rows.item(0).nombre_proveedor;
+	       			 $scope.model.telefono = res.rows.item(0).telefono;
+	       			 $scope.model.direccion = res.rows.item(0).direccion; 	       			                	                     
+	       		} 
+	       	}, function (err) {
+	       		$cordovaToast.show(err, 'long', 'center');
+	       	});	 
+    		
+    	};    	
     	$scope.save = function(){
-            /*var query = "INSERT INTO proveedor (codigo_proveedor, nombre_proveedor, telefono, direccion) VALUES (?,?,?,?)";
-            $cordovaSQLite.execute(db, query, [$scope.model.codigo, $scope.model.nombre,$scope.model.telefono,$scope.model.direccion]).then(function(res) {            	
+            var query = "UPDATE proveedor set nombre_proveedor=?, telefono=?, direccion=? where codigo_proveedor=?";
+            $cordovaSQLite.execute(db, query, [$scope.model.nombre,$scope.model.telefono,$scope.model.direccion,$scope.model.codigo]).then(
+            function(res) {
+            	$cordovaToast.show('Se ha guardado con exito', 'long', 'center');
+            	$location.path('/proveedor');
             }, function (err) {
-            	console.error(err);
-            });
-            */                           
-    	};
-
+            	$cordovaToast.show(err, 'long', 'center');
+            });                            
+    	};    	
+    	$scope.buscar();    	
     });

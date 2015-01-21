@@ -27,11 +27,11 @@
                 <ion-item ng-repeat="item in list | filter:find | orderBy:'nombre'" ng-show="list.length">
                     {{item.nombre}}
                     <div>
-                        <small>{{item.codigo}}</small>
-                    </div>
+                        <small>{{item.codigo}}</small>                        
+                    </div>                
+                    <a ui-sref="proveedor.update({id:{{item.codigo}}})"  class="icon ion-edit"></a>    
                 </ion-item>
-            </ion-list>
-        </ion-content>
+            </ion-list>        
         </ion-content>
     </ion-pane>
 </ion-side-menus>
