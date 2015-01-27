@@ -26,7 +26,7 @@ angular.module('cliente.controllers', [])
     	$scope.model = {
     		codigo: null,
             cedula: null,
-            nombre: null,            
+            nombre: '',            
             telefono: '',
             direccion: ''                    
         };
@@ -43,24 +43,24 @@ angular.module('cliente.controllers', [])
         };
 
     })
-    .controller('updateCliCtrl', function ($scope, $http,$stateParams,$cordovaToast, $cordovaSQLite,apiService) {
+    .controller('updateCliCtrl', function ($scope, $http,$location, $stateParams,$cordovaToast, $cordovaSQLite,apiService) {
     	$scope.btnName = 'Modificar';
     	$scope.model = {
         	codigo: null,
             cedula: null,
-            nombre: null,            
+            nombre: '',            
             telefono: '',
             direccion: ''                    
     	};    	    
     	$scope.buscar = function(){
-           	var query = "SELECT codigo_cliente,cedula, nombre,telefono,direccion FROM cliente where codigo_cliente=?";           	
+           	var query = "SELECT codigo_cliente, cedula, nombre,telefono,direccion FROM cliente where codigo_cliente=?";           	
             $cordovaSQLite.execute(db, query, [$stateParams.id]).then(function(res) {
                 if(res.rows.length > 0) {               	 
-               	 		$scope.model.codigo= res.rows.item(0).codigo_cliente;
-               	 		$scope.model.cedula =  res.rows.item(0).cedula;
-               	 		$scope.model.nombre = res.rows.item(0).nombre;
-               	 		$scope.model.telefono = res.rows.item(0).telefono;
-               	 		$scope.model.direccion= res.rows.item(0).direccion; 
+               	 	$scope.model.codigo= res.rows.item(0).codigo_cliente;
+               	 	$scope.model.cedula =  parseInt(res.rows.item(0).cedula);
+               	 	$scope.model.nombre = res.rows.item(0).nombre;
+               	 	$scope.model.telefono = res.rows.item(0).telefono;
+               	 	$scope.model.direccion= res.rows.item(0).direccion; 
                 }               
             }, function (err) {
             	$cordovaToast.show(err, 'long', 'center');

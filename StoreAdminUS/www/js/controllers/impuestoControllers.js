@@ -40,7 +40,7 @@ angular.module('impuesto.controllers', [])
         };
 
     })
-	.controller('updateImpuCtrl', function ($scope, $http,$stateParams,$cordovaToast, $cordovaSQLite,apiService) {
+	.controller('updateImpuCtrl', function ($scope, $http, $location,$stateParams,$cordovaToast, $cordovaSQLite,apiService) {
 		$scope.btnName = 'Modificar';
 		$scope.model = {
 			codigo: null,
@@ -53,7 +53,7 @@ angular.module('impuesto.controllers', [])
                 if(res.rows.length > 0) {               	 
                	 	$scope.model.codigo = res.rows.item(0).codigo_impuesto;
                	 	$scope.model.concepto = res.rows.item(0).concepto;
-               	 	$scope.model.gravable =  res.rows.item(0).gravamen;                	 	                	                     
+               	 	$scope.model.gravamen =  res.rows.item(0).gravamen;                	 	                	                     
                 } 
             }, function (err) {
             	$cordovaToast.show(err, 'long', 'center');

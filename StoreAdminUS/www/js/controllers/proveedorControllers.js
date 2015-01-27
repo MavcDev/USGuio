@@ -55,7 +55,7 @@ angular.module('proveedor.controllers', [])
     		var query = "SELECT codigo_proveedor, nombre_proveedor, telefono, direccion FROM proveedor where codigo_proveedor=?";
 	       	$cordovaSQLite.execute(db, query, [$stateParams.id]).then(function(res) {
 	       		if(res.rows.length > 0) {
-	       			 $scope.model.codigo = res.rows.item(0).codigo_proveedor;
+	       			 $scope.model.codigo = parseInt(res.rows.item(0).codigo_proveedor);
 	       			 $scope.model.nombre = res.rows.item(0).nombre_proveedor;
 	       			 $scope.model.telefono = res.rows.item(0).telefono;
 	       			 $scope.model.direccion = res.rows.item(0).direccion; 	       			                	                     

@@ -44,7 +44,7 @@ angular.module('categoria.controllers', [])
         };
 
     })
-    .controller('updateCateCtrl', function ($scope, $http, $stateParams,$cordovaSQLite,$cordovaToast,apiService) {
+    .controller('updateCateCtrl', function ($scope, $http, $location, $stateParams,$cordovaSQLite,$cordovaToast,apiService) {
     	    	
     	$scope.btnName = 'Modificar';
     	$scope.model = {

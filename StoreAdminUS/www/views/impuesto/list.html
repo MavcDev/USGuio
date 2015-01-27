@@ -24,12 +24,12 @@
 				</label>				
 			</div>            
             <ion-list>
-                <ion-item ng-repeat="item in list | filter:find | orderBy:'concepto'" ng-show="list.length">
+                <ion-item class="item-icon-right" ng-repeat="item in list | filter:find | orderBy:'concepto'" ng-show="list.length">
                     {{item.concepto}}
                     <div>
                         <small>{{item.gravable}}</small>
                     </div>
-                    <a ui-sref="impuesto.update({id:{{item.codigo}}})"  class="icon ion-ios7-telephone-outline"></a>
+                    <a ui-sref="impuesto.update({id:{{item.codigo}}})"  class="icon ion-edit"></a>
                 </ion-item>
             </ion-list>        
         </ion-content>
