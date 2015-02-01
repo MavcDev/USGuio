@@ -1,9 +1,10 @@
 <ion-view>
     <ion-header-bar class="bar-positive">
+        <a class="button button-icon icon ion-chevron-left" href="#/impuesto"></a>
         <h1 class="title">Impuesto</h1>
     </ion-header-bar>
-    <ion-content>       
-	<form ng-submit="save()" class="css-form">
+    <ion-content>
+    <form ng-submit="form.$valid && save()" name="form" class="css-form" novalidate>
     	<ion-list>    	           
 			<input type="hidden" ng-model="model.codigo" required><!-- por si algo -->        
         	<label class="item item-input item-stacked-label">
@@ -13,8 +14,17 @@
         	<label class="item item-input">
             	<span class="input-label">Gravable</span>
             	<input type="number" ng-model="model.gravamen" required>
-        	</label>             
-        	<button class="button button-block button-positive" type="submit">{{btnName}}</button>
+        	</label>
+            <li class="item item-toggle">
+                Activo
+                <label class="toggle toggle-assertive">
+                    <input type="checkbox" ng-model="model.estado" checked>
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+        	<button class="button button-block button-positive" ng-disabled="form.$invalid" type="submit">{{btnName}}</button>
     	</ion-list>
 	</form>
 	</ion-content>

@@ -42,10 +42,10 @@ angular.module('starter', [
             
             db = $cordovaSQLite.openDB({ name: "storeAdminUS.db" });            
 
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS proveedor (codigo_proveedor text primary key, nombre_proveedor text, telefono text, direccion text)");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS cliente (codigo_cliente integer  primary key, cedula text, nombre text, telefono text, direccion text)");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS impuesto (codigo_impuesto integer  primary key, concepto text, gravamen integer)");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categoria (codigo_categoria integer  primary key, nombre_categoria text)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS proveedor (codigo_proveedor text primary key, nombre_proveedor text, telefono text, direccion text, estado integer)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS cliente (codigo_cliente integer  primary key, cedula text, nombre text, telefono text, direccion text, estado integer)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS impuesto (codigo_impuesto integer  primary key, concepto text, gravamen integer, estado integer)");
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categoria (codigo_categoria integer  primary key, nombre_categoria text,estado integer)");
             
         });
     })

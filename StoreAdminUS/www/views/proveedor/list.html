@@ -14,6 +14,7 @@
     </ion-side-menu>
     <ion-pane ion-side-menu-content>
         <div class="bar bar-header bar-positive">
+            <a class="button button-icon icon ion-chevron-left" href="#/"></a>
             <a class="button button-icon icon ion-navicon" ng-click="sideMenu.toggleLeft()"></a>
             <h1 class="h1 title">Proveedor</h1>            
         </div>
@@ -29,7 +30,7 @@
                     <div>
                         <small>{{item.codigo}}</small>                        
                     </div>                
-                    <a ui-sref="proveedor.update({id:{{item.codigo}}})"  class="icon ion-edit"></a>    
+                    <i ui-sref="proveedor.update({id:{{item.codigo}}})"  class="icon ion-edit"></i>
                 </ion-item>
             </ion-list>        
         </ion-content>
